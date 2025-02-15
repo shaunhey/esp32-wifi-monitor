@@ -1,0 +1,24 @@
+menu "Application Configuration"
+
+    config MQTT_BROKER_URL
+        string "MQTT Broker URL"
+        default "mqtt://localhost"
+        help
+            URL of the MQTT broker to connect to
+
+    config NTP_SERVER
+        string "NTP server"
+        default "pool.ntp.org"
+        help
+            IP address or hostname of NTP server
+            
+    config WIFI_SSID
+        string "Wifi SSID"
+        help
+            The SSID of the access point to connect to
+
+    config WIFI_PSK
+        string "Wifi Pre-Shared Key"
+        help
+            The pre-shared key of the access point to connect to
+endmenu
