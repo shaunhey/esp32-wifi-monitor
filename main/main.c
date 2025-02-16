@@ -76,7 +76,7 @@ static void mgmt_pkt_cb(wifi_promiscuous_pkt_t *prom_pkt)
                      time(NULL), MAC2STR(pkt->da), MAC2STR(pkt->sa), ssid, prom_pkt->rx_ctrl.rssi);
 
             ESP_LOGI(TAG, "%s", tmp);
-            esp_mqtt_client_publish(s_mqtt_client, "home/security/esp32-wifi-monitor/event", tmp, 0, 1, false);
+            esp_mqtt_client_publish(s_mqtt_client, CONFIG_MQTT_TOPIC "/event", tmp, 0, 1, false);
         }
     }
 }
@@ -101,7 +101,7 @@ static void start_mqtt()
     esp_mqtt_client_config_t mqtt_cfg = {.broker.address.uri = CONFIG_MQTT_BROKER_URL};
     s_mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
     ESP_ERROR_CHECK(esp_mqtt_client_start(s_mqtt_client));
-    esp_mqtt_client_publish(s_mqtt_client, "home/security/esp32-wifi-monitor/status", "started", 0, 1, false);
+    esp_mqtt_client_publish(s_mqtt_client, CONFIG_MQTT_TOPIC "/status", "started", 0, 1, false);
 }
 
 void start_ntp()

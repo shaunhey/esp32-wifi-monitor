@@ -6,6 +6,12 @@ menu "Application Configuration"
         help
             URL of the MQTT broker to connect to
 
+    config MQTT_TOPIC
+        string "MQTT Topic"
+        default "esp32-wifi-monitor"
+        help
+            The base MQTT topic to use
+
     config NTP_SERVER
         string "NTP server"
         default "pool.ntp.org"
