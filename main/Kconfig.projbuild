@@ -1,4 +1,9 @@
 menu "Application Configuration"
+    config DEVICE_NAME
+        string "Device name (hostname)"
+        default "esp32-wifi-monitor"
+        help
+            Hostname to be used for this device
 
     config MQTT_BROKER_URL
         string "MQTT Broker URL"

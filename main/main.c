@@ -71,7 +71,7 @@ static void mgmt_pkt_cb(wifi_promiscuous_pkt_t *prom_pkt)
             ssid[ssid_len] = 0;
 
             char tmp[256];
-            snprintf(tmp, sizeof(tmp), "{\"type\":\"wifi-probe\",\"ts\":\"%llu\",\"da\":\"" MACSTR "\",\"sa\":\"" MACSTR "\",\"ssid\":\"%s\",\"rssi\":\"%d\"}",
+            snprintf(tmp, sizeof(tmp), "{\"src\":\""CONFIG_DEVICE_NAME"\",\"type\":\"wifi-probe\",\"ts\":\"%llu\",\"da\":\"" MACSTR "\",\"sa\":\"" MACSTR "\",\"ssid\":\"%s\",\"rssi\":\"%d\"}",
                      time(NULL), MAC2STR(pkt->da), MAC2STR(pkt->sa), ssid, prom_pkt->rx_ctrl.rssi);
 
             ESP_LOGI(TAG, "%s", tmp);
@@ -134,7 +134,7 @@ static void start_wifi()
 
     ESP_LOGI(TAG, "Initializing WiFi");
     esp_netif_t *netif = esp_netif_create_default_wifi_sta();
-    esp_netif_set_hostname(netif, "esp32-wifi-monitor");
+    esp_netif_set_hostname(netif, CONFIG_DEVICE_NAME);
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
